@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "jpeg-js": "^0.4.4"
+  },
+  "name": "image",
+  "version": "1.0.0",
+  "main": "filter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "main": "node filter.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
