@@ -14,6 +14,10 @@ class Pixel {
     return new Pixel(0, this.#green, this.#blue, this.#alpha);
   }
 
+  noGreen() {
+    return new Pixel(this.#red, 0, this.#blue, this.#alpha);
+  }
+
   getPixel() {
     return [this.#red, this.#green, this.#blue, this.#alpha];
   }

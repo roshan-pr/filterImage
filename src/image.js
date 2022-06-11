@@ -1,3 +1,5 @@
+const identity = x => x;
+
 class Image {
   #pixels;
   #height;
@@ -5,16 +7,17 @@ class Image {
 
   constructor(height, width, pixels) {
     this.#pixels = pixels;
+    this.#height = height;
+    this.#width = width;
   }
 
-  redFilter() {
-    const pixels = this.#pixels.map((pixel) => pixel.noRed());
+  applyFilter(filter = identity) {
+    const pixels = this.#pixels.map((pixel) => filter(pixel));
     return new Image(this.#height, this.#width, pixels);
   }
 
   getImage() {
-    const pixels = this.#pixels.flatMap((pixel) => pixel.getPixel());
-    return [...pixels];
+    return this.#pixels.flatMap((pixel) => pixel.getPixel());
   }
 }
 
