@@ -16,16 +16,18 @@ const gatherPixels = ({ data }) => {
 const removeRed = (pixel) => pixel.noRed();
 const removeGreen = (pixel) => pixel.noGreen();
 
-const main = () => {
-  const imageData = fs.readFileSync('./bird.jpeg');
+const filter = (img) => {
+  const imageData = fs.readFileSync(img);
   const decodedImg = jpeg.decode(imageData);
 
   const pixels = gatherPixels(decodedImg);
   const image = new Image(decodedImg.height, decodedImg.width, pixels);
-  const filterImage = image.applyFilter(removeGreen);
+  // const filterImage = image.applyFilter(removeGreen);
+  // const reversedImage = image.reverse();
+  const blurImage = image.blur();
 
-  decodedImg.data = filterImage.getImage();
-  fs.writeFileSync('./_image.jpeg', jpeg.encode(decodedImg).data);
+  decodedImg.data = blurImage.getImage();
+  fs.writeFileSync('./_blur' + img, jpeg.encode(decodedImg).data);
 };
 
-main();
+module.exports = { filter };
